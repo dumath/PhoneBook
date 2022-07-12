@@ -19,7 +19,7 @@ namespace PhoneBook
             contacts = new List<Contact>()
             {
                 new Contact() { Name="Andrey", Number=7999999999 },
-                new Contact() { Name ="Mama", Number=09090909090},
+                new Contact() { Name="Mama", Number=09090909090},
                 new Contact() { Name="Mama", Number=1111111 },
                 new Contact() { Name="AndMama", Number=1111111}
             };

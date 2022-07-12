@@ -36,6 +36,7 @@
                 <TextBox x:Name="phone" Grid.Row="1" Grid.Column="1" Margin="10" Height="100" Width="400" FontSize="50" TextAlignment="Right" PlaceholderText="Телефон" TextChanged="FindByPhone"/>
             </StackPanel>
             <Button     Visibility="Collapsed"            Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Height="100" Width="200" FontSize="40" Content="Найти"/>
+            <Button Grid.Row="2" Grid.Column="1" />
         </Grid>
         
     </Grid>

@@ -37,29 +37,41 @@ namespace PhoneBook
         /// <param name="e"></param>
         public void FindByPhone(object sender, TextChangedEventArgs e)
         {
-            name.TextChanged -= FindByName;
-            if(checkSymbols(phone.Text))
+            try
             {
-                long num = long.Parse(phone.Text);
-                List<Contact> contacts = vm[num];
-                if (contacts != null && contacts.Count != 0)
+                name.TextChanged -= FindByName;
+                if (checkSymbols(phone.Text))
                 {
-                    name.Text = contacts[0].Name;
-                    if (contacts.Count > 1)
+                    long num = long.Parse(phone.Text);
+                    List<Contact> contacts = vm[num];
+                    if (contacts != null && contacts.Count != 0)
                     {
-                        StackPanel matchedByPhoneNames = new StackPanel();
-                        foreach (Contact c in contacts)
-                            matchedByPhoneNames.Children.Add(new ListViewItem() { Content = c.Name });
-                        Flyout matchedNamesFlyout = new Flyout();
-                        matchedNamesFlyout.Content = matchedByPhoneNames;
-                        name.ContextFlyout = matchedNamesFlyout;
-                        //name.ContextFlyout.ShowMode = FlyoutShowMode.Auto;
-                        name.ContextFlyout.Placement = FlyoutPlacementMode.BottomEdgeAlignedLeft;
-                        name.ContextFlyout.ShowAt(name);
+                        name.Text = contacts[0].Name;
+                        if (contacts.Count > 1)
+                        {
+                            StackPanel matchedByPhoneNames = new StackPanel();
+                            foreach (Contact c in contacts)
+                                matchedByPhoneNames.Children.Add(new ListViewItem() { Content = c.Name });
+                            Flyout matchedNamesFlyout = new Flyout();
+                            matchedNamesFlyout.Content = matchedByPhoneNames;
+                            name.ContextFlyout = matchedNamesFlyout;
+                            //name.ContextFlyout.ShowMode = FlyoutShowMode.Auto;
+                            name.ContextFlyout.Placement = FlyoutPlacementMode.BottomEdgeAlignedLeft;
+                            name.ContextFlyout.ShowAt(name);
+                        }
                     }
                 }
+                name.TextChanged += FindByName;
             }
-            name.TextChanged += FindByName;
+            catch(FormatException eEx)
+            {
+                return;
+            }
+            catch(OverflowException oEx)
+            {
+                return;
+            }
+            
         }
 
         /// <summary>
